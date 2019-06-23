@@ -1,9 +1,10 @@
 # arsene-i3-config
 i3 config originally created for ubuntu, but i'll be porting it over to my arch setup
-sda1  1M bios boot ----None 
-sda2 30G Linux Root (x8664) ----- mkfs.ext4 /dev/sda2 >> mount /dev/sda2 /mnt/
-sda3 550M swap ---- mkswap /dev/sda3  swapon /dev/sda3
-sda4 rest File system mkfs.ext4 /dev/sda4 > mkdir fs /dev/home mount fs /dev/home
+>sda1  1M bios boot ----None 
+>sda2 30G Linux Root (x8664) ----- mkfs.ext4 /dev/sda2 >> mount /dev/sda2 /mnt/
+>sda3 550M swap ---- mkswap /dev/sda3  swapon /dev/sda3
+>sda4 rest File system mkfs.ext4 /dev/sda4 
+> mkdir fs /dev/home mount fs /dev/home
 
 
 # Installation for Arch Linux UEFI/GPT
