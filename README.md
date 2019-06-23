@@ -6,14 +6,14 @@ sda3 550M swap ---- mkswap /dev/sda3  swapon /dev/sda3
 sda4 rest File system mkfs.ext4 /dev/sda4 > mkdir fs /dev/home mount fs /dev/home
 
 
-#Installation for Arch Linux UEFI/GPT
+# Installation for Arch Linux UEFI/GPT
 
 #### Choose closest mirror list
 >pacman -Sy
 >pacman -S reflector
 >reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
 
-####Install arch linux base packages
+#### Install arch linux base packages
 
 >pacstrap -i /mnt base base-devel
 
@@ -23,7 +23,7 @@ sda4 rest File system mkfs.ext4 /dev/sda4 > mkdir fs /dev/home mount fs /dev/hom
 > cat /mnt/etc/fstab
 > arch-chroot /mnt
 
-####Configure language and location
+#### Configure language and location
 
 > nano /etc/locale.gen
 ****uncomment: en_US.UTF-8 UTF8 ****
@@ -34,7 +34,7 @@ sda4 rest File system mkfs.ext4 /dev/sda4 > mkdir fs /dev/home mount fs /dev/hom
 > mkinitcpio -p linux
 
 
-####Set time zone
+#### Set time zone
 
 > ls /usr/share/zoneinfo
 > ln -s /usr/share/zoneinfo/America/New_York > /etc/localtime
@@ -42,38 +42,38 @@ sda4 rest File system mkfs.ext4 /dev/sda4 > mkdir fs /dev/home mount fs /dev/hom
 
 > hwclock --systohc --utc
 
-####Configure the repository
+#### Configure the repository
 
 > nano /etc/pacman.conf
 ****Uncomment the line: [multilib] and include = /etc/pacman.d/mirrorlist****
 
 > pacman -Sy
 
-####Set hostname and network
+#### Set hostname and network
 
 > echo linux-fanboy > /etc/hostname
 > systemctl enable dhcpcd@enp0s3.service
 
-####Set root password and create new user
+#### Set root password and create new user
 
 > passwd
 > pacman -S sudo bash-completion
 > useradd -m -g users -G wheel,storage,power -s /bin/bash *usrname*
 > passwd *password for usrname*
 
-####Allow the users in wheel group to be able to preformance administrative tasks with sudo:
+#### Allow the users in wheel group to be able to preformance administrative tasks with sudo:
 
 > EDITOR=nano visudo
 ****Uncomment the line: %wheel ALL=(ALL)****
 
-####Install and configure bootloader
+#### Install and configure bootloader
 
 
 > pacman -S grub os-prober
 > grub-install /dev/sda
 > grub-mkconfig -o /boot/grub/grub.cfg
 
-####Unmount the partitions and reboot
+#### Unmount the partitions and reboot
 
 > exit
 > umount -R /mnt
